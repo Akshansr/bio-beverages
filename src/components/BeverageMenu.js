@@ -127,16 +127,25 @@ class BeverageMenu extends Component {
                                             </select>
                                         </div>
                                     </div>
+                                    {(this.state.beverageName && this.state.name) ?
+                                        (
+                                            <div className="pt-3 text-right">
+                                                <button type="submit"
+                                                    className="btn btn-success" >Submit</button>
+                                            </div>
+                                        ) :
+                                        (
+                                            <div className="pt-3 text-right">
+                                                <button type="submit"
+                                                    className="btn btn-success" disabled>Submit</button>
+                                            </div>
+                                        )}
 
-                                    <div className="pt-3 text-right">
-                                        <button type="submit"
-                                            className="btn btn-success">Submit</button>
-                                    </div>
                                 </form>
 
                             </div>
                         </div>
-                        <div className="text-right text-white pt-2 ">
+                        <div className="text-right text-white pt-2 " >
                             <Link to='/beverageQueue'>
                                 <a className="text-white h5">Track your order!!</a>
                             </Link>

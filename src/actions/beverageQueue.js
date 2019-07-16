@@ -1,6 +1,4 @@
-import uuid from 'uuid';
-
-// ADD_EXPENSE
+//ADD BEVERAGE TO QUEUE
 export const addBeverage = (
   {
 
@@ -8,7 +6,7 @@ export const addBeverage = (
     BeverageBarOrderId = '',
     OrderedBeverage = {
       BeverageId: '',
-      Name: ""
+      Name: ''
     },
     OrderQuantity = 0,
     IsBeingMixed = false,
@@ -36,7 +34,7 @@ export const addBeverage = (
 });
 
 
-// EDIT_EXPENSE
+// EDIT ORDER PROCESSING STATUS
 export const editOrderStatus = (id, updates) => ({
   type: 'EDIT_ORDER',
   id,

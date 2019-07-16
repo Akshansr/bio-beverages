@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { addBeverage } from '../actions/beverageQueue';
 import { editOrderStatus } from '../actions/beverageQueue';
 
@@ -12,7 +13,7 @@ class BeverageMenu extends Component {
         super(props);
         this.state = {
             name: '',
-            beverageId: '',
+            beverageName: '',
             OrderCreatedTimeStamp: moment().format()
 
         }
@@ -30,14 +31,14 @@ class BeverageMenu extends Component {
         e.preventDefault();
 
         setTimeout(() => {
-            let { name, beverageId, OrderCreatedTimeStamp } = this.state
+            let { name, beverageName, OrderCreatedTimeStamp } = this.state
             this.props.dispatch(addBeverage(
                 {
                     OrderCreatedTimeStamp,
                     BeverageBarOrderId: uuid(),
                     OrderedBeverage: {
-                        BeverageId: beverageId,
-                        Name: name
+                        BeverageId: uuid(),
+                        Name: beverageName
                     },
                     OrderQuantity: 0,
                     IsBeingMixed: false,
@@ -49,7 +50,7 @@ class BeverageMenu extends Component {
                 }
             ))
 
-            console.log(this.moveNext(OrderCreatedTimeStamp))
+            this.moveNext(OrderCreatedTimeStamp)
             this.props.history.push('/beverageQueue')
 
         }, 1000);
@@ -65,7 +66,7 @@ class BeverageMenu extends Component {
                     IsBeingMixed: true
                 }
             ))
-        }, 5000)
+        }, 5000);
         setTimeout(() => {
             this.props.dispatch(editOrderStatus(
                 orderedTime,
@@ -74,7 +75,7 @@ class BeverageMenu extends Component {
                     IsReadyToCollect: true,
                 }
             ))
-        }, 10000)
+        }, 10000);
         setTimeout(() => {
             this.props.dispatch(editOrderStatus(
                 orderedTime,
@@ -84,46 +85,64 @@ class BeverageMenu extends Component {
                     IsCollected: true
                 }
             ))
-        }, 15000)
+        }, 15000);
     }
     render() {
         const { Beverages } = this.props.beveragesMenu[0];
         return (
-            <div className="container">
-                <h1 className="h1 text-center">Order Your Beverage</h1>
-                <div className="text-center">
-                    <div className="col-md-3"></div>
-                    <div className="col-md-6">
-                        <form className="form-group"
-                            onSubmit={this.handleOnSubmit}>
-                            <div className="input-group mb-3">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text">Name</span>
-                                </div>
-                                <input type="text" name='name'
 
-                                    onChange={this.handleChange}
-                                    className="form-control"
-                                    placeholder="Username" />
+            <div className='container text-white'>
+                <div className="row mt-5">
+                    <div className="col-sm-3 "></div>
+                    <div className="col-sm-6" >
+                        <h4 className="h6 text-center ">ORDER YOUR BEVERAGE</h4>
+                        <div style={{ border: '1px solid #fff' }}>
+
+                            <div className="p-5">
+                                <form className="form-group"
+                                    autoComplete="off"
+                                    onSubmit={this.handleOnSubmit}>
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <label for="usr">Name: </label>
+                                        </div>
+                                        <div className="col-sm-9">
+                                            <input type="text" name='name'
+
+                                                onChange={this.handleChange}
+                                                className="form-control form-input"
+                                                placeholder="Username" />
+                                        </div>
+                                    </div>
+                                    <div className="row pt-3">
+                                        <div className="col-sm-3"><label for="usr">Name: </label></div>
+                                        <div className="col-sm-9">
+                                            <select className="form-control pl-2 form-input" name='beverageName' onChange={this.handleChange}>
+                                                <option > -PLEASE SELECT-</option>
+                                                {Beverages.map((beverage) => (
+                                                    <option value={beverage.Name} >
+                                                        {beverage.Name}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div className="pt-3 text-right">
+                                        <button type="submit"
+                                            className="btn btn-success">Submit</button>
+                                    </div>
+                                </form>
+
                             </div>
-                            <select name='beverageId' onChange={this.handleChange}>
-                                <option> ----Please Select----</option>
-                                {Beverages.map((beverage) => (
-                                    <option href="#" value={beverage.BeverageId} className="dropdown-item">
-                                        {beverage.Name}
-                                    </option>
-                                ))}
-                            </select>
-
-                            <button type="submit"
-                                className="form-control">Submit</button>
-
-
-                        </form>
+                        </div>
+                        <div className="text-right text-white pt-2 ">
+                            <Link to='/beverageQueue'>
+                                <a className="text-white h5">Track your order!!</a>
+                            </Link>
+                        </div>
                     </div>
-                    <div className="col-md-3"></div>
                 </div>
-
             </div>
         );
     }

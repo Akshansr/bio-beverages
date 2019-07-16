@@ -1,4 +1,4 @@
-// Expenses Reducer
+// Beverages Menu Reducer
 
 const beveragesMenuReducerDefaultState = [
   {

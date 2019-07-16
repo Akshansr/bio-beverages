@@ -21,4 +21,10 @@ To install all node modules used in the project
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+### Production application
+
+visit below URL to access the heroku hosted application
+
+https://bio-beverages.herokuappp.com
+
 

@@ -104,7 +104,7 @@ class BeverageMenu extends Component {
                                     onSubmit={this.handleOnSubmit}>
                                     <div className="row">
                                         <div className="col-sm-3">
-                                            <label for="usr">Name: </label>
+                                            <label for="usr">NAME: </label>
                                         </div>
                                         <div className="col-sm-9">
                                             <input type="text" name='name'
@@ -115,7 +115,7 @@ class BeverageMenu extends Component {
                                         </div>
                                     </div>
                                     <div className="row pt-3">
-                                        <div className="col-sm-3"><label for="usr">Name: </label></div>
+                                        <div className="col-sm-3"><label for="usr">BEVERAGE: </label></div>
                                         <div className="col-sm-9">
                                             <select className="form-control pl-2 form-input" name='beverageName' onChange={this.handleChange}>
                                                 <option > -PLEASE SELECT-</option>
